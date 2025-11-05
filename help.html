@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heart Palm Demo – Ajuda</title>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0%, #020617 100%);
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: clamp(24px, 4vw, 48px);
+      display: grid;
+      place-items: center;
+    }
+    main {
+      width: min(960px, 96vw);
+      background: rgba(15, 23, 42, 0.75);
+      border-radius: 24px;
+      border: 1px solid rgba(94, 234, 212, 0.25);
+      padding: clamp(24px, 3vw, 48px);
+      box-shadow: 0 30px 80px rgba(2, 6, 23, 0.65);
+      display: grid;
+      gap: 1.5rem;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      color: #facc15;
+    }
+    h2 {
+      margin: 0;
+      font-size: clamp(1.3rem, 3vw, 1.7rem);
+      color: #38bdf8;
+    }
+    p, li {
+      line-height: 1.65;
+      font-size: 1rem;
+      color: #e2e8f0;
+    }
+    section {
+      display: grid;
+      gap: 1rem;
+    }
+    code {
+      background: rgba(2, 6, 23, 0.8);
+      padding: 0.15rem 0.45rem;
+      border-radius: 6px;
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+      color: #f8fafc;
+    }
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul {
+      margin: 0;
+      padding-left: 1.25rem;
+      display: grid;
+      gap: 0.5rem;
+    }
+    footer {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-align: center;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Heart Palm Demo</h1>
+      <p>Aplicação que combina <strong>MediaPipe HandLandmarker</strong> e <strong>Three.js</strong> para rastrear a palma da mão em tempo real e posicionar um coração 3D no centro da palma.</p>
+    </header>
+
+    <section>
+      <h2>Como funciona</h2>
+      <ul>
+        <li><strong>Detecção de mãos</strong>: o MediaPipe HandLandmarker identifica 21 pontos da mão em cada frame de vídeo.</li>
+        <li><strong>Conversão de coordenadas</strong>: os pontos são convertidos para o espaço 3D do Three.js levando em conta o espelhamento do vídeo.</li>
+        <li><strong>Posicionamento do modelo</strong>: o coração é alinhado com a normal da palma e recebe uma escala proporcional à largura da mão.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Como trocar o objeto 3D</h2>
+      <ol>
+        <li>Coloque o novo modelo GLTF/GLB na pasta <code>cenas/</code> (por exemplo, <code>cenas/meu_modelo/scene.gltf</code>).</li>
+        <li>No arquivo <code>main.js</code>, localize o trecho onde o GLTF é carregado:<br>
+          <code>loader.load("./cenas/heart/scene.gltf", ...)</code></li>
+        <li>Substitua o caminho pela nova cena, por exemplo:<br>
+          <code>loader.load("./cenas/meu_modelo/scene.gltf", ...)</code></li>
+        <li>Se necessário, ajuste o fator de normalização (padrão 80 unidades) ou o deslocamento <code>heartOffset</code> para posicionar o modelo corretamente.</li>
+        <li>Recarregue a aplicação (Ctrl+F5) para carregar o novo objeto.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Controles disponíveis</h2>
+      <ul>
+        <li><strong>Ativar Webcam</strong>: inicializa ou encerra a captura de vídeo.</li>
+        <li><strong>Escala do coração</strong>: slider que multiplica o tamanho base calculado a partir da largura da palma (de 0.3× a 8×, valor inicial 4×).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Dicas</h2>
+      <ul>
+        <li>Use iluminação frontal suave para melhorar a detecção.</li>
+        <li>Mantenha a palma aberta e centralizada para um alinhamento mais estável.</li>
+        <li>Se o modelo parecer deslocado, ajuste o offset em <code>heartOffset</code> ou a escala mínima/máxima no cálculo.</li>
+      </ul>
+    </section>
+
+    <footer>
+      Projeto base em <code>index.html</code>, estilos em <code>style.css</code> e lógica em <code>main.js</code>. Remote qualquer alteração com Ctrl+F5 para limpar o cache do navegador.
+    </footer>
+  </main>
+</body>
+</html>

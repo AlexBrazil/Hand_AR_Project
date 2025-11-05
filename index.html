@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heart Palm Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="viewport">
+    <section class="stage" id="stage">
+      <video id="camera" autoplay playsinline class="camera" muted></video>
+      <canvas id="overlay" class="overlay"></canvas>
+      <button id="startButton" class="control">Ativar Webcam</button>
+      <div id="status" class="status">Inicializando...</div>
+      <div class="panel">
+        <label class="slider">
+          <span>Escala do coração</span>
+          <input type="range" id="scaleSlider" min="0.3" max="8" step="0.05" value="4">
+          <output id="scaleValue">4.00x</output>
+        </label>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

@@ -47,8 +47,8 @@ heartGroup.visible = false;
 threeScene.add(heartGroup);
 
 const loader = new GLTFLoader();
-const heartUrl = new URL("./cenas/heart/scene.gltf", import.meta.url);
-
+// const heartUrl = new URL("./cenas/heart/scene.gltf", import.meta.url);
+const heartUrl = new URL("/cenas/heart/scene.gltf", import.meta.url);
 loader.load(
   heartUrl.href,
   (gltf) => {
